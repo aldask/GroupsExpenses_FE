@@ -2,7 +2,7 @@ import axios from "axios";
 import type { Group, Member, Transaction } from "./types";
 
 const api = axios.create({
-  baseURL: "https://localhost:7208/api",
+  baseURL: "https://group-task-api.onrender.com/api",
 });
 
 // GROUPS
