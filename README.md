@@ -1,54 +1,58 @@
-# React + TypeScript + Vite
+# Group Expense Splitter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application for managing user groups, creating transactions, and splitting expenses between group members.
 
-Currently, two official plugins are available:
+- **Frontend:** React + TypeScript + Tailwind CSS  
+- **Backend:** ASP.NET Core Web API + EF Core In Memory Database  
+- **Logic:** All calculation rules handled in backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+### Groups Page
+- View all your groups with the amount you owe or are owed in each.
+- Create a new group (title only).
+- Amount indicators show debts/credits per group.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Group Details Page
+- View group title and members with owed/owing amounts.
+- Settle amounts if not null.
+- View transactions for the group.
+- Add new members.
+- Remove members (only if settled with everyone).
+- Create a new transaction.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### New Transaction Page
+- Choose payer.
+- Enter total amount.
+- Split options:
+  - **Equally** – divides amount equally among members.
+  - **Percentage** – assign percentage to each member, converted to amounts.
+  - **Dynamic** – manually enter exact amount for each member (including payer).
+
+## Technical Details
+- Backend: ASP.NET Core + EF Core In-Memory DB for storage.
+- Frontend: React with chosen UI library.
+- All calculation logic lives in the backend.
+- No authentication for demo purposes.
+
+## Backend Repository
+[Group Expense Splitter Backend](https://github.com/aldask/Group-Expenses-API)
+
+## Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/aldask/GroupsExpenses_FE.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Install dependencies
+```bash
+npm install
 ```
+
+### Run the app
+```bash
+npm run dev
+```
+Runs at: [http://localhost:5173](http://localhost:5173)
